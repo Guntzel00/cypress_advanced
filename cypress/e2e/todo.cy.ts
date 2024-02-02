@@ -1,34 +1,42 @@
-import TodoApi from '../api/TodoApi';
-import UserApi from '../api/UserApi';
 import Todo from '../models/Todo';
 import User from '../models/User';
+import NewTodoPage from '../pages/NewTodoPage';
+import RegisterPage from '../pages/RegisterPage';
+import TodoPage from '../pages/todoPage';
 
-it('Should be able to add a todo', () => {
-	const user = new User();
+describe('Todo Test Cases', () => {
+	let user: User;
+	let todoPage: TodoPage;
+	let newTodoPage: NewTodoPage;
+	let registerPage: RegisterPage;
+	let todoItem: Todo;
 
-	new UserApi().register(user);
-
-	// Add a todo
-	cy.visit('/todo/new');
-	cy.get('[data-testid="new-todo"]').type('Be an expert in cypress');
-	cy.get('[data-testid="submit-newTask"]').click();
-	cy.get('[data-testid="todo-item"]')
-		.contains('Be an expert in cypress')
-		.should('be.visible');
-});
-
-it('Should be able to delete a todo', () => {
-	const user = new User();
-	const newTodo = new Todo('Be an expert in cypress');
-
-	new UserApi().register(user).then((response) => {
-		user.setToken(response.body.access_token);
-		// Add a todo
-		new TodoApi().addTodo(user, newTodo);
+	beforeEach(() => {
+		user = new User();
+		todoPage = new TodoPage();
+		newTodoPage = new NewTodoPage();
+		registerPage = new RegisterPage();
+		todoItem = new Todo('Be an expert in cypress');
+		registerPage.registerUsingAPI(user).then((response) => {
+			user.setToken(response.body.access_token);
+		});
 	});
 
-	// Delete a todo
-	cy.visit('/todo');
-	cy.get('[data-testid="delete"]').click();
-	cy.get('[data-testid="no-todos"]').should('be.visible');
+	it('Should be able to add a todo', () => {
+		// registerPage.registerUsingAPI(user);
+
+		// Add a todo
+		newTodoPage.load();
+		newTodoPage.addTodo(todoItem);
+		todoPage.getTodoItem().contains(todoItem.getItem()).should('be.visible');
+	});
+
+	it('Should be able to delete a todo', () => {
+		newTodoPage.addTodoUsingAPI(user, todoItem);
+
+		// Delete a todo
+		todoPage.load();
+		todoPage.deleteTodo();
+		todoPage.getNoTodosMessage().should('be.visible');
+	});
 });
