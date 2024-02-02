@@ -2,7 +2,7 @@ export default class Todo {
 	private isCompleted: boolean;
 	private item: string;
 
-	constructor(item: string, isCompleted: boolean) {
+	constructor(item: string) {
 		this.item = item;
 		this.isCompleted = false;
 	}

@@ -1,5 +1,6 @@
 import TodoApi from '../api/TodoApi';
 import UserApi from '../api/UserApi';
+import Todo from '../models/Todo';
 import User from '../models/User';
 
 it('Should be able to add a todo', () => {
@@ -18,11 +19,12 @@ it('Should be able to add a todo', () => {
 
 it('Should be able to delete a todo', () => {
 	const user = new User();
+	const newTodo = new Todo('Be an expert in cypress');
 
 	new UserApi().register(user).then((response) => {
 		user.setToken(response.body.access_token);
 		// Add a todo
-		new TodoApi().addTodo(user);
+		new TodoApi().addTodo(user, newTodo);
 	});
 
 	// Delete a todo
