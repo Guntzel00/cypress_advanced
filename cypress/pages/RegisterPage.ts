@@ -35,6 +35,8 @@ export default class RegisterPage {
 	}
 
 	registerUsingAPI(user: User) {
-		return new UserApi().register(user);
+		return new UserApi().register(user).then((response) => {
+			user.setToken(response.body.access_token);
+		});
 	}
 }

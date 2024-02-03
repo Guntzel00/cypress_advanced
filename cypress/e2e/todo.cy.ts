@@ -17,14 +17,10 @@ describe('Todo Test Cases', () => {
 		newTodoPage = new NewTodoPage();
 		registerPage = new RegisterPage();
 		todoItem = new Todo('Be an expert in cypress');
-		registerPage.registerUsingAPI(user).then((response) => {
-			user.setToken(response.body.access_token);
-		});
+		registerPage.registerUsingAPI(user);
 	});
 
 	it('Should be able to add a todo', () => {
-		// registerPage.registerUsingAPI(user);
-
 		// Add a todo
 		newTodoPage.load();
 		newTodoPage.addTodo(todoItem);

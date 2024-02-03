@@ -6,6 +6,7 @@ export default class NewTodoPage {
 	private get newTodoInput() {
 		return '[data-testid="new-todo"]';
 	}
+
 	private get submitButton() {
 		return '[data-testid="submit-newTask"]';
 	}
