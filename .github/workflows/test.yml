@@ -31,5 +31,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.TOKEN }}
-          publish_dir: ./cypress/reports
+          publish_dir: ./cypress/reports/html
       # Add more steps for your build and test process here
