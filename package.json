@@ -1,17 +1,20 @@
 {
-  "name": "cypress-advanced-udemy",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@faker-js/faker": "^8.4.0",
-    "cypress": "^13.6.4",
-    "typescript": "^5.3.3"
-  }
+	"name": "cypress-playwright-project",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@faker-js/faker": "^8.0.2",
+		"@types/node": "^20.11.16",
+		"allure-commandline": "^2.27.0",
+		"cypress": "^13.6.4",
+		"cypress-mochawesome-reporter": "^3.8.1",
+		"typescript": "^5.1.3"
+	}
 }
